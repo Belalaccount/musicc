@@ -19,7 +19,7 @@ UPSTREAM_REPO = getenv("UPSTREAM_REPO", "https://github.com/BelalElshayal1/music
 UPSTREAM_BRANCH = getenv("UPSTREM_BRANCH", "main")
 DURATION_LIMIT = int(getenv("DURATION_LIMIT", "6000"))
 GROUP_SUPPORT = getenv("GROUP_SUPPORT", "P_A_PARIS")
-UPDATES_CHANNEL = getenv("UPDATES_CHANNEL", "belalelshayals)
+UPDATES_CHANNEL = getenv("UPDATES_CHANNEL", "belalelshayals")
 
 # database, decorators, handlers mandatory vars
 MONGODB_URL = getenv("MONGODB_URL")
