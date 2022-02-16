@@ -7,7 +7,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtube_search import YoutubeSearch
 
 
-@Client.on_message(command(["", f"search@{BOT_USERNAME}"]))
+@Client.on_message(command(["ابحث", f"search@{BOT_USERNAME}"]))
 @check_blacklist()
 async def ytsearch(_, message: Message):
     if len(message.command) < 2:
