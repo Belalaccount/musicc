@@ -14,14 +14,14 @@ from config import (
 )
 from driver.decorators import check_blacklist
 from program import __version__
-from driver.core import user, bot, me
-from driver.filters import command, other_filters
+from driver.core import bot, me_bot, me_user
+from driver.filters import command
 from driver.database.dbchat import add_served_chat, is_served_chat
 from driver.database.dbpunish import is_gbanned_user
 from driver.database.dbusers import add_served_user
 from driver.database.dblockchat import blacklisted_chats
 from pyrogram import Client, filters, __version__ as pyrover
-from pyrogram.errors import FloodWait, MessageNotModified
+from pyrogram.errors import FloodWait
 from pytgcalls import (__version__ as pytover)
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message, ChatJoinRequest
 
@@ -126,7 +126,7 @@ async def alive(c: Client, message: Message):
 
     await c.send_photo(
         chat_id,
-        photo=f"https://telegra.ph/file/2875489dea129c629dbdc.jpg",
+        photo=f"ALIVE_IMG",
         caption=alive,
         reply_markup=keyboard,
     )
@@ -141,7 +141,7 @@ async def ping_pong(c: Client, message: Message):
     await m_reply.edit_text("🏓 `PONG!!`\n" f"⚡️ `{delta_ping * 1000:.3f} ms`")
 
 
-@Client.on_message(command(["uptime", f"uptime@{BOT_USERNAME}"]) & ~filters.edited)
+@Client.on_message(command(["وقت التشغيل", f"uptime@{BOT_USERNAME}"]) & ~filters.edited)
 @check_blacklist()
 async def get_uptime(c: Client, message: Message):
     current_time = datetime.utcnow()
