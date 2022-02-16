@@ -2,11 +2,10 @@ import asyncio
 
 from config import BOT_USERNAME, SUDO_USERS
 
-from driver.core import user
+from driver.core import user, me_bot
 from driver.filters import command, other_filters
 from driver.database.dbchat import remove_served_chat
 from driver.database.dbqueue import remove_active_chat
-from driver.database.dbpunish import is_gbanned_user
 from driver.decorators import authorized_users_only, bot_creator, check_blacklist
 
 from pyrogram.types import Message
@@ -33,9 +32,9 @@ async def join_chat(c: Client, m: Message):
             )
         await user.join_chat(invitelink)
         await remove_active_chat(chat_id)
-        return await user.send_message(chat_id, "✅ لقد انضم الحساب المساعد للمجموعة")
+        return await user.send_message(chat_id, "✅ userbot joined chat")
     except UserAlreadyParticipant:
-        return await user.send_message(chat_id, "✅ الحساب المساعد بالفعل انضم للمجموعة")
+        return await user.send_message(chat_id, "✅ userbot already in chat")
 
 
 @Client.on_message(
@@ -50,12 +49,12 @@ async def leave_chat(_, m: Message):
         await remove_active_chat(chat_id)
         return await _.send_message(
             chat_id,
-            "✅ الحساب المساعد تم خروجه من المجموعة",
+            "✅ userbot leaved chat",
         )
     except UserNotParticipant:
         return await _.send_message(
             chat_id,
-            "❌ الحساب المساعد بالفعل خرج",
+            "❌ userbot already leave chat",
         )
 
 
@@ -91,7 +90,7 @@ async def leave_all(client, message):
 
 @Client.on_message(filters.left_chat_member)
 async def bot_kicked(c: Client, m: Message):
-    bot_id = (await c.get_me()).id
+    bot_id = me_bot.id
     chat_id = m.chat.id
     left_member = m.left_chat_member
     if left_member.id == bot_id:
