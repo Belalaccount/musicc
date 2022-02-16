@@ -126,7 +126,7 @@ async def alive(c: Client, message: Message):
 
     await c.send_photo(
         chat_id,
-        photo=f"{ALIVE_IMG}",
+        photo=f"https://telegra.ph/file/2875489dea129c629dbdc.jpg",
         caption=alive,
         reply_markup=keyboard,
     )
