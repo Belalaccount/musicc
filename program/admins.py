@@ -9,7 +9,6 @@ from driver.queues import QUEUE, clear_queue
 from driver.filters import command, other_filters
 from driver.decorators import authorized_users_only, check_blacklist
 from driver.utils import skip_current_song, skip_item, remove_if_exists
-from driver.database.dbpunish import is_gbanned_user
 
 from driver.database.dbqueue import (
     is_music_playing,
@@ -124,7 +123,6 @@ async def resume(client, m: Message):
 @authorized_users_only
 @check_blacklist()
 async def skip(c: Client, m: Message):
-    await m.delete()
     user_id = m.from_user.id
     chat_id = m.chat.id
     if len(m.command) < 2:

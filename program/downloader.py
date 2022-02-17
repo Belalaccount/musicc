@@ -27,7 +27,7 @@ from driver.database.dbpunish import is_gbanned_user
 from driver.utils import remove_if_exists
 
 
-@Client.on_message(command(["song", f"song@{bn}"]) & ~filters.edited)
+@Client.on_message(command(["تحميل", f"song@{bn}"]) & ~filters.edited)
 @check_blacklist()
 async def song_downloader(_, message):
     await message.delete()
@@ -90,7 +90,7 @@ async def song_downloader(_, message):
 
 
 @Client.on_message(
-    command(["vsong", f"vsong@{bn}", "video", f"video@{bn}"]) & ~filters.edited
+    command(["تحميل فيديو", f"vsong@{bn}", "video", f"video@{bn}"]) & ~filters.edited
 )
 @check_blacklist()
 async def video_downloader(_, message):
